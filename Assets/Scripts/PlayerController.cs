@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float _inputWindow = 0.5f;
-    private bool _windowStarted = false;
+    public float _inputWindow = 0.5f;
+    public bool _windowStarted = false;
+    public float windowStartTime = 0;
+    public HUDManager HUDManager;
     [SerializeField]
     private float _holdTime = 0.4f;
     private float _holdStart;
@@ -59,45 +60,45 @@ public class PlayerController : MonoBehaviour
         // Backward
         if (numTaps >= 4 && isHolding == false)
         {
-            Debug.Log("Backward");
+            HUDManager.UpdateStateText("Move Backward");
             _rigidbody.velocity = Vector3.back * _speed;
         }
         // Crouch
         else if (numTaps == 3 && isHolding == false && !_isCrouching)
         {
-            Debug.Log("Crouch");
+            HUDManager.UpdateStateText("Crouch");
             _playerObject.transform.localScale = new Vector3(1, crouchScale, 1);
             _isCrouching = true;
         }
         // Uncrouch
         else if (numTaps == 3 && isHolding == false && _isCrouching)
         {
-            Debug.Log("Uncrouch");
+            HUDManager.UpdateStateText("Uncrouch");
             _playerObject.transform.localScale = new Vector3(1, 1, 1);
             _isCrouching = false;
         }
         // Stop
         else if (numTaps == 2 && isHolding == false && !isSlowTap)
         {
-            Debug.Log("Stop");
+            HUDManager.UpdateStateText("Stop");
             _rigidbody.velocity = Vector3.zero;
         }
         // Walk Forward
         else if (numTaps == 2 && isHolding == false)
         {
-            Debug.Log("Slow Forward");
+            HUDManager.UpdateStateText("Walk Forward");
             _rigidbody.velocity = Vector3.forward * _speed / 2;
         }
         // Jump
         else if (numTaps == 1 && isHolding == false)
         {
-            Debug.Log("Jump");
+            HUDManager.UpdateStateText("Jump");
             _rigidbody.AddForce(Vector3.up * _jumpForce);
         }
         // Run Forward
         else if (numTaps == 0 && isHolding == true)
         {
-            Debug.Log("Run Forward");
+            HUDManager.UpdateStateText("Run Forward");
             _rigidbody.velocity = Vector3.forward * _speed * 2;
         }
 
@@ -180,6 +181,7 @@ public class PlayerController : MonoBehaviour
             }
             _holdStart = Time.time;
             _windowStarted = true;
+            windowStartTime = Time.time;
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -212,7 +214,9 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(_inputWindow);
         ProcessInputWindow();
         _windowStarted = false;
-        ClearLog();
+//        ClearLog();
+        windowStartTime = Time.time;
+
     }
 }
 
