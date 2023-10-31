@@ -903,7 +903,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1188,12 +1188,16 @@ PrefabInstance:
       value: CrouchUnderObstacle
       objectReference: {fileID: 0}
     - target: {fileID: 8112710913906058261, guid: 8b9bc4ee60aa1f5459e8acc24583d0a9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112710913906058261, guid: 8b9bc4ee60aa1f5459e8acc24583d0a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8112710913906058261, guid: 8b9bc4ee60aa1f5459e8acc24583d0a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 8112710913906058261, guid: 8b9bc4ee60aa1f5459e8acc24583d0a9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1402,8 +1406,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4287621631
+  m_fontColor: {r: 1, g: 0.9118601, b: 0.56037736, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

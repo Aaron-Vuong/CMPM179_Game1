@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         if (numTaps >= 4 && isHolding == false)
         {
             HUDManager.UpdateStateText("Move Backward");
-            _rigidbody.velocity = Vector3.back * _speed;
+            _rigidbody.velocity = -transform.forward * _speed;
         }
         // Crouch
         else if (numTaps == 3 && isHolding == false && !_isCrouching)
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         else if (numTaps == 2 && isHolding == false)
         {
             HUDManager.UpdateStateText("Walk Forward");
-            _rigidbody.velocity = Vector3.forward * _speed / 2;
+            _rigidbody.velocity = transform.forward * _speed / 2;
         }
         // Jump
         else if (numTaps == 1 && isHolding == false)
@@ -99,7 +99,17 @@ public class PlayerController : MonoBehaviour
         else if (numTaps == 0 && isHolding == true)
         {
             HUDManager.UpdateStateText("Run Forward");
-            _rigidbody.velocity = Vector3.forward * _speed * 2;
+            _rigidbody.velocity = transform.forward * _speed * 2;
+        }
+        else if (numTaps == 1 && isHolding == true && isHoldingFirst == true)
+        {
+            HUDManager.UpdateStateText("Rotated 30* Clockwise");
+            transform.Rotate(new Vector3(0, -30, 0), Space.World);
+        }
+        else if (numTaps == 1 && isHolding == true)
+        {
+            HUDManager.UpdateStateText("Rotated 30* CounterClockwise");
+            transform.Rotate(new Vector3(0, 30, 0), Space.World);
         }
 
     }
