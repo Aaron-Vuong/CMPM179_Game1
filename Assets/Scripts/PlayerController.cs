@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
     private int _jumpForce = 10;
     [SerializeField]
     private int _speed = 10;
-    [SerializeField]
-    private int _rotateDeg = 30;
 
     [SerializeField]
     private float crouchScale = 0.5f;
