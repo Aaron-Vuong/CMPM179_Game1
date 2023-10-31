@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
 
     [SerializeField]
-    private int _jumpForce = 10;
+    private int _jumpForce = 400;
     [SerializeField]
     private int _speed = 10;
 
@@ -168,9 +168,10 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(ExecuteInputWindowCoroutine());
             }
             Debug.Log("Tapping...");
-            if (Time.time >= _holdStart + _holdTime)
+            if (Time.time >= _holdStart + _holdTime && inputs.Count > 0 && inputs.Dequeue() == PlayerInput.Tap)
             {
                 Debug.Log("Slow Tapping...");
+                inputs.Enqueue(PlayerInput.Tap);
                 inputs.Enqueue(PlayerInput.SlowTap);
             }
             else
