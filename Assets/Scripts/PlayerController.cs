@@ -167,6 +167,8 @@ public class PlayerController : MonoBehaviour
             if (!_windowStarted)
             {
                 StartCoroutine(ExecuteInputWindowCoroutine());
+                windowStartTime = Time.time;
+                _windowStarted = true;
             }
             Debug.Log("Tapping...");
             if (Time.time >= _holdStart + _holdTime && inputs.Count > 0 && inputs.Dequeue() == PlayerInput.Tap)
@@ -180,8 +182,6 @@ public class PlayerController : MonoBehaviour
                 inputs.Enqueue(PlayerInput.Tap);
             }
             _holdStart = Time.time;
-            _windowStarted = true;
-            windowStartTime = Time.time;
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {

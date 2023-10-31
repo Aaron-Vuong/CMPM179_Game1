@@ -39,8 +39,8 @@ public class HUDManager : MenuManager
     {
         if (playerController._windowStarted)
         {
-            float elapsedWindow = (Time.time / playerController.windowStartTime + playerController._inputWindow);
-        //    Debug.Log(elapsedWindow);
+            float elapsedWindow = (Time.time - playerController.windowStartTime) / playerController._inputWindow;
+            Debug.Log(elapsedWindow);
             if (elapsedWindow > 1)
             {
                 slider.value = 0;
